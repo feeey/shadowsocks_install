@@ -4,10 +4,6 @@ export PATH
 #=================================================================#
 #   System Required:  CentOS 6,7, Debian, Ubuntu                  #
 #   Description: One click Install ShadowsocksR Server            #
-#   Author: 91yun <https://twitter.com/91yun>                     #
-#   Thanks: @breakwa11 <https://twitter.com/breakwa11>            #
-#   Thanks: @Teddysun <i@teddysun.com>                            #
-#   Intro:  https://www.91yun.org/archives/2079                   #
 #=================================================================#
 
 clear
@@ -83,8 +79,8 @@ function pre_install(){
     fi
     # Set ShadowsocksR config password
     echo "Please input password for ShadowsocksR:"
-    read -p "(Default password: www.91yun.org):" shadowsockspwd
-    [ -z "$shadowsockspwd" ] && shadowsockspwd="www.91yun.org"
+    read -p "(Default password: www.feeey.com):" shadowsockspwd
+    [ -z "$shadowsockspwd" ] && shadowsockspwd="www.feeey.com"
     echo
     echo "---------------------------"
     echo "password = $shadowsockspwd"
@@ -94,8 +90,8 @@ function pre_install(){
     while true
     do
     echo -e "Please input port for ShadowsocksR [1-65535]:"
-    read -p "(Default port: 8989):" shadowsocksport
-    [ -z "$shadowsocksport" ] && shadowsocksport="8989"
+    read -p "(Default port: 8123):" shadowsocksport
+    [ -z "$shadowsocksport" ] && shadowsocksport="8123"
     expr $shadowsocksport + 0 &>/dev/null
     if [ $? -eq 0 ]; then
         if [ $shadowsocksport -ge 1 ] && [ $shadowsocksport -le 65535 ]; then
@@ -143,7 +139,7 @@ function download_files(){
         exit 1
     fi
     # Download ShadowsocksR file
-    # if ! wget --no-check-certificate -O manyuser.zip https://github.com/breakwa11/shadowsocks/archive/manyuser.zip; then
+    # if ! wget --no-check-certificate -O manyuser.zip https://github.com/feeey/shadowsocksr/archive/manyuser.zip; then
         # echo "Failed to download ShadowsocksR file!"
         # exit 1
     # fi
@@ -244,7 +240,7 @@ function install_ss(){
     cd $cur_dir
     # unzip -q manyuser.zip
     # mv shadowsocks-manyuser/shadowsocks /usr/local/
-	git clone https://github.com/shadowsocksr/shadowsocksr.git /usr/local/shadowsocks
+	git clone https://github.com/feeey/shadowsocksr.git /usr/local/shadowsocks
     if [ -f /usr/local/shadowsocks/server.py ]; then
         chmod +x /etc/init.d/shadowsocks
         # Add run on system start up
@@ -265,9 +261,8 @@ function install_ss(){
         echo -e "Protocol: \033[41;37m auth_sha1_v2 \033[0m"
         echo -e "obfs: \033[41;37m tls1.2_ticket_auth \033[0m"
         echo -e "Encryption Method: \033[41;37m chacha20 \033[0m"
-        echo "Welcome to visit:https://www.91yun.org/archives/2079"
         echo "If you want to change protocol & obfs, reference URL:"
-        echo "https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup"
+        echo "https://github.com/feeey/shadowsocks-rss/wiki/Server-Setup"
         echo
         echo "Enjoy it!"
         echo
